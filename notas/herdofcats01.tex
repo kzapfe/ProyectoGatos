@@ -1,0 +1,263 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+%\usepackage[spanish]{babel}
+\usepackage{bm}
+
+\usepackage[cm]{fullpage}
+\usepackage[light]{antpolt}
+\usepackage[T1]{fontenc}
+
+
+\bibliographystyle{alpha}
+
+\newcommand{\ihb}{\frac{i}{\hbar}}
+\newcommand{\xfase}{\mathbf{x}}
+\newcommand{\qfase}{\mathbf{q}}
+\newcommand{\pfase}{\mathbf{p}}
+\newcommand{\xifase}{ {\boldsymbol{\xi}} }
+\newcommand{\mufase}{ {\boldsymbol{\mu}} }
+\newcommand{\Ifase}{\mathbf{I}}
+\newcommand{\Pfase}{\mathbf{P}}
+\newcommand{\Scat}{\mathbf{S}}
+\newcommand{\Jsimp}{\mathbf{J}}
+\newcommand{\Dom}{\mathbb{D}}
+\newcommand{\Var}{\mathbb{M}}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\newcommand{\Prom}[2]{\langle #1\rangle_{#2}}
+
+
+\DeclareMathOperator*{\cod}{cod}
+\DeclareMathOperator*{\traza}{traza}
+
+
+\title{A Herd of Cats State and its Chord Function Representation}
+\author{\\CBPF}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+
+\section{A new proposal for Ergodic Wigner Functions}
+
+Recently we proposed a semiclassical approximation to 
+a stationary state of a chaotic (ergodic, hyperbolic)
+Hamiltonian system \cite{Deltas}.
+Our approach tried to enrich the structure of the Wigner
+conjecture by randomizing its ``coarseness''.  
+The usual approach was based on the Voros and Berry
+Conjecture \cite{Voros76, BerryRIR}, which states that
+the limit for the Wigner or center function of a classically
+chaotic (in the strong sense) Hamiltonian system would be
+a Dirac Delta in the Energy shell, that is:
+
+\begin{equation}
+W(\xfase)=\frac{1}{N_E} \delta(H(\xfase)-E), 
+\end{equation}
+
+where $1/N_E$ is the normalization factor for the 
+shell with energy  $E$. This approach tends to bypass
+many important objections, such as Hudson's Theorem
+\cite{Hudson}, which states that the only non negative
+Wigner function is the one of the Gaussian coherent state.
+Our most serious concern was not that, but the lack
+of fine structure in such approach, a feature which
+encompasses rich information about quantum effects
+such as self interference and correlations. 
+
+Thinking first on remedying such a undesirable feature,
+we proposed an ultra-coarse grain approach to the Wigner
+Function, with the condition that a weak and pragmatic
+limit be respected:
+
+\begin{equation}
+\chi_E(\xifase)\rightarrow N_E 
+\int d \xfase \exp\left(\ihb \xifase \wedge \xfase) \right)
+\delta(H(\xfase)-E)
+\end{equation}
+
+The limit is for small chords $\xifase$ and small Planck's
+Constant $\hbar$.
+
+The first try was to simply simulated a coarse grained
+distribution on the energy surface by randomly putting
+punctual Dirac Deltas over it. That was meant to represent
+the very scared appearance of a chaotic Wigner function.
+Its symplectic Fourier Transform would be a random superposition
+of sinusoidal waves, the exact distribution of them dependent
+on the geometric qualities of the energy shell, as 
+it's Taylor expansion reveals:
+
+\begin{equation}
+\chi(\xifase)\approx 
+1-\ihb \xifase \wedge \Prom{\hat{\xfase}}{E}
+-\frac{1}{\hbar^2}
+\Prom{(\xifase\wedge \hat{\xfase})^2}{E}+\cdots
+\end{equation}
+The cumulants depend exclusively on the shape of the energy
+shell. 
+
+This approach turn to be extremely sensitive to
+errors or inhomogeneities in the 
+distribution of the ``centers'', and we still have 
+a real problem with the quantum correspondence.
+
+\section{The Cat Herd State}
+
+\subsection{Chord Function for a Cat}
+
+In order to honor Hudsons Theorem, we will make a more
+funny approach: to superpose a lot of coherent states
+in a pure state which I will call the ``Herd of Cats'' or
+Cat Herd State. The idea is that the superposition of two
+Gaussian Coherent States produces in the 
+phase space a Wigner Function which shows interference
+patterns \cite{Vallejos10}. We could expect that a 
+fair amount of coherent states centered randomly over
+the energy shell would mimic a scared Wigner Function,
+with all its structural richness and negative values,
+but still having a homogeneity on the large scale.
+
+In order to do this, first we well agree in the basic
+characteristics of this distribution. To set things clear,
+we will specify what we understand by a Gaussian Coherent
+state and a Herd of Cats state.   
+
+Following the notation of \cite{Vallejos10}, we will
+call a Gaussian Coherent State a quantum state which
+corresponds to the displacement and squeezing of 
+the ground state of an harmonic oscillator. The
+Squeezing would be indexed by the classical symplectic
+linear matrix $S$, and the translation by the 
+chord $\xifase$.  The Gaussian Coherent State would be:
+
+\begin{equation}
+\ket{S,\xifase}=\hat{T_\xifase}\hat{M_S}\ket{0},
+\end{equation}
+where the operators are the abstract quantum
+operators corresponding to the classical transformations.
+
+The Wigner Function for such a state is a Gaussian
+with center $\xifase$ and spread given by $S$, the covariance 
+Matrix being $SS^t$. To agree in a convenient notation
+I will use the following notation for the 
+Pure Gaussian Coherent State Wigner Function:
+\begin{equation}
+W_{S,\xifase}(\xfase)=\frac{\sqrt{\det (SS^\dagger)^{-1}}}{(\pi\hbar)^d}
+\exp(-(\xfase-\xifase)(SS^\dagger)(\xfase-\xifase)/\hbar)
+\end{equation}
+Here $d$ is the number of degrees of freedom. It shall be noticed
+that $S$ and $SS^\dagger$ are symplectic, so the expression simplifies
+as $\det SS^\dagger =1$. 
+
+
+A Gaussian Cat State is simply the state corresponding
+to the superposition of two Gaussian Coherent States.
+Its Wigner Function has a term for each of the 
+coherent states identical to the one obtained by such a state
+alone, and one  interference term. Let $\ket{ A, \xifase}$
+and $\ket{ B, \mufase}$ be the two coherent components in question,
+and they are equally weighted and properly normalized.
+Then its Wigner Function would be:
+Coherent State Wigner Function:
+\begin{equation}
+W_{cat}(\xfase)=W_{A,\xifase}(\xfase)+W_{B,\mufase}(\xfase)+
+I_{A,B,\xifase,\mufase}(\xfase).
+\end{equation}
+
+The interference term is a bit cumbersome to write down, but it has a 
+very clear geometrical meaning. It is a Gaussian enveloped
+oscillating function, which comes from the sum of the terms 
+$\ket{A,\xifase} \bra{B, \mufase}$,
+$\ket{B,\mufase} \bra{A, \xifase}$ of the density matrix. 
+If we make the following abbreviations the structure of this
+interference term becomes evident:
+
+\begin{align}
+\zeta & = \mufase-\xifase \\
+\eta & = (\mufase+\xifase)/2 \\
+K & =\frac{2^d i^\nu}{\sqrt{\det(A+B)+i(B-A)J}} \\
+G & = (BB^\dagger+AA^\dagger)^{-1}(2-i(BB^\dagger -AA^\dagger)J)
+\end{align}
+$J$ is the symplectic matrix.
+The interference term would be:
+
+\begin{equation}
+WI_{A,B,\mufase,\xifase}(\xfase)=
+2 |K| \Re \left( \exp (\ihb \xfase \wedge \zeta +i\phi) \right) \\ 
+\times \exp\left(-(\xfase-\eta)G(\xfase-\eta)/\hbar \right)
+\frac{\sqrt{\det G}}{(\pi\hbar)^d}
+\end{equation}
+
+The Gaussian envelope term would correspond to a Wigner Coherent State
+Function for a Correlation Matrix such that $SS^\dagger=G$.
+
+We are interested
+on obtaining the chord function of such a term, so we investigate
+the symplectic Fourier Transform of it.
+As this term is the sum of the contributions from the cross terms
+of the density matrix, for simplicity we transform each one separately.
+We choose $\lambda$ as the chord for the Fourier Transform.
+Leaving multiplicative constants aside, we have:
+
+\begin{multline}
+\int d \xfase \exp \left(\ihb (\lambda-\zeta)\wedge \xfase) \right)
+\exp \left( -(\xfase-\eta)G (\xfase-\eta)/\hbar \right) =\\
+\exp \left(\ihb (\lambda-\zeta)\wedge \eta) \right)
+\exp \left( -(\lambda-\eta)G^{-1}(\lambda-\eta)/\hbar \right),
+\end{multline}
+and
+\begin{multline}
+\int d \xfase \exp \left(\ihb (\lambda+\zeta)\wedge \xfase) \right)
+\exp \left( -(\xfase-\eta)G (\xfase-\eta)/\hbar \right) =\\
+\exp \left(\ihb (\lambda+\zeta)\wedge \eta) \right)
+\exp \left( -(\lambda+\eta)G^{-1}(\lambda+\eta)/\hbar \right).
+\end{multline}
+For the case $G=1$ these coincide with Zambrano's results 
+\cite{tesiseduardo}.
+
+\subsection{Chord Function for a Cat Herd}
+
+Now the procedure is to populate the energy shell with cat states. For that
+we will procede in the following way. We will choose randomly a relative
+small set of Gaussian Coherent States which would have center very
+close to the energy shell of the problem. ``Very close'' is
+less than  one unit of the minimal quantal unit of energy of the problem.
+If we choose all contributors to the state to have the same wheight,
+the density matrix will look like:
+\begin{equation}
+\hat{\rho}=\frac{1}{N^2}\sum_{k,j=1}^{N}
+\exp(i(\phi_k-\phi_j))\ket{A_k,\eta_k}\bra{A_j, \eta_j}
+\end{equation}
+with certain relative phases $\phi_n$.
+
+The Wigner Function for the Herd of Cats would be
+\begin{equation}
+W_{herd}(\xfase)=\frac{1}{N}\sum_k W_k(\xfase)
++\frac{2}{N(N-1)}\sum_{k\neq j}WI_{k,j}(\xfase),
+\end{equation}
+that is, the individual Wigner Functions for each coherent
+component indexed by $k$ and the interference terms for each of the
+posible pairs indexed by $(k,j)$. The Chord Function will have
+the same structure, by linearity of the SFT. 
+
+
+
+
+\bibliography{herdofcats}
+
+\end{document}
+
+
+
