@@ -74,10 +74,19 @@ void  SetCentre(simplectic &x){
   };
 
   
-void  SetCentre(double q, double p){
+  void  SetCentre(double q, double p){
     centre.q=q;
     centre.p=p;
 
+  };
+
+  void  SetMasa(double M){
+    masa=M;
+  };
+
+  
+  void  SetOmega(double W){
+    omega=W;
   };
 
 

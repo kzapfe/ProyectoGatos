@@ -1,6 +1,7 @@
-LIBS=-lgsl
+LIBS=-lgsl 
 FUENTECOM=CoherentState01.hpp simplectic01.hpp QuantumConstants.hpp 
 FUENTESESFERA=CatStates01.hpp PopulateSphericalShells01.hpp
+OPTS=-O3
 
 TestCentre01.x: testeando01.cpp $(FUENTECOM)
 	g++ $(LIBS) $<  -o $@
@@ -38,4 +39,4 @@ $(FUENTECOM)  $(FUENTESESFERA)
 
 CatGenParalel02.x: catsgeneralsectionparalel02.cpp CortesGatosBidimensionales02.hpp \
 $(FUENTECOM)  $(FUENTESESFERA)
-	g++ $(LIBS) -fopenmp -larmadillo  $<  -o $@	
+	g++ $(LIBS) $(OPTS) -fopenmp -larmadillo  $<  -o $@	

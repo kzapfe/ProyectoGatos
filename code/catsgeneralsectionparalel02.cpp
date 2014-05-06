@@ -60,6 +60,10 @@ int main(int argc, char* argv[]){
   for(int i=0; i<maximumgauss; i++){
     //Selecciona centros en los subespacios X y Y
     CentroX[i].SetCentre(centros(i,0), centros(i,1));
+    //Veamos, parece ser que tenemos distintas omegas que dependen
+    //Del potencial a tratar
+    CentroX[i].SetOmega(0.1);
+
     CentroY[i].SetCentre(centros(i,2), centros(i,3));
 
 
@@ -83,7 +87,7 @@ int main(int argc, char* argv[]){
   clock_t start, finish;
   start=clock();
   
-#pragma omp parallel sections num_threads(4) //Solo wigner para empezar
+#pragma omp parallel sections num_threads(8) //Solo wigner para empezar
   {
 
       
@@ -103,7 +107,7 @@ int main(int argc, char* argv[]){
       
       qx=false;
       qy=false;
-      testeando="CorteCentrosNelsonSlowQ.dat";
+      testeando="CorteCentrosNelsonGeneralQ.dat";
 
       WignerSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
@@ -121,7 +125,7 @@ int main(int argc, char* argv[]){
       
 	   qx=false;
 	   qy=true;
-	   testeando="CorteCentrosNelsonSlowY.dat";
+	   testeando="CorteCentrosNelsonGeneralY.dat";
 
 	   WignerSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
@@ -140,7 +144,7 @@ int main(int argc, char* argv[]){
       
 	   qx=true;
 	   qy=false;
-	   testeando="CorteCentrosNelsonSlowX.dat";
+	   testeando="CorteCentrosNelsonGeneralX.dat";
 
 	   WignerSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
@@ -158,7 +162,7 @@ int main(int argc, char* argv[]){
       
 	   qx=true;
 	   qy=true;
-	   testeando="CorteCentrosNelsonSlowP.dat";
+	   testeando="CorteCentrosNelsonGeneralP.dat";
 
 	   WignerSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
@@ -171,6 +175,14 @@ int main(int argc, char* argv[]){
 
 
     /*
+      0 0 -> xhiq muq 
+      1 0 -> muq mup
+      0 1 -> xhiqy xhip
+      1 1 -> xhip mup  
+    */
+    
+     
+
 #pragma omp section 
     {
       bool qx,qy;
@@ -178,11 +190,12 @@ int main(int argc, char* argv[]){
       
       qx=false;
       qy=false;
-      testeando="CorteCuerdasNelsonSlowQ.dat";
+      testeando="CorteCuerdasNelsonGeneralQ.dat";
 
       WeylSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
-		    qx, qy, testeando);		          
+		  qx, qy, -0.5, 0.5,-0.5, 0.5,
+		  testeando);		          
 
     }
      
@@ -195,11 +208,12 @@ int main(int argc, char* argv[]){
       
 	   qx=false;
 	   qy=true;
-	   testeando="CorteCuerdasNelsonSlowMu.dat";
+	   testeando="CorteCuerdasNelsonGeneralXhi.dat";
 
 	   WeylSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
-		    qx, qy, testeando);
+		    qx, qy, -0.5, 0.5,-0.5, 0.5, 
+		       testeando);
 
 
     }
@@ -213,11 +227,12 @@ int main(int argc, char* argv[]){
       
 	   qx=true;
 	   qy=false;
-	   testeando="CorteCuerdasNelsonSlowXhi.dat";
+	   testeando="CorteCuerdasNelsonGeneralMu.dat";
 
 	   WeylSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
-		    qx, qy, testeando);
+		    qx, qy, -0.5, 0.5,-0.5, 0.5, 
+		       testeando);
 
     }
 
@@ -230,17 +245,18 @@ int main(int argc, char* argv[]){
       
 	   qx=true;
 	   qy=true;
-	   testeando="CorteCuerdasNelsonSlowP.dat";
+	   testeando="CorteCuerdasNelsonGeneralP.dat";
 
 	   WeylSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
-		    qx, qy, testeando);
+		    qx, qy, -0.5, 0.5,-0.5, 0.5, 
+		       testeando);
 
    
       
     } //Cierra el ultimo  pragma omp section de cuerdas
 
-    */
+
 
   } //Cierra el pragma paralel omp sections directive
 
