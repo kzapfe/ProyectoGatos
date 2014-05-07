@@ -107,7 +107,7 @@ public:
 				       Dos.masa*Dos.omega)/(pi*hbar);
 
    
-    result=2*FactorCorrectivopormasayomega*
+    result=2.0*FactorCorrectivopormasayomega*
       magnitud*
       cos(faseinterferencia)*
       exp(exponentegaussiana);

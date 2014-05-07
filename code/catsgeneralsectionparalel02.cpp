@@ -13,7 +13,7 @@
 
 //Ultra Global Variables
 
-const int resol=200;
+const int resol=400;
 double magnituddeinteres=2.7;
 
 #include "CatStates01.hpp"
@@ -60,12 +60,14 @@ int main(int argc, char* argv[]){
   for(int i=0; i<maximumgauss; i++){
     //Selecciona centros en los subespacios X y Y
     CentroX[i].SetCentre(centros(i,0), centros(i,1));
+ 
+    CentroY[i].SetCentre(centros(i,2), centros(i,3));
+    
     //Veamos, parece ser que tenemos distintas omegas que dependen
     //Del potencial a tratar
-    CentroX[i].SetOmega(0.1);
 
-    CentroY[i].SetCentre(centros(i,2), centros(i,3));
-
+    //    CentroX[i].SetOmega(0.1);
+    // CentroY[i].SetOmega(0.1);
 
   };
 
@@ -194,7 +196,7 @@ int main(int argc, char* argv[]){
 
       WeylSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
-		  qx, qy, -0.5, 0.5,-0.5, 0.5,
+		  qx, qy, -0.2, 0.2, -0.2, 0.2,
 		  testeando);		          
 
     }
@@ -212,7 +214,7 @@ int main(int argc, char* argv[]){
 
 	   WeylSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
-		    qx, qy, -0.5, 0.5,-0.5, 0.5, 
+		    qx, qy, -0.2, 0.2, -0.2, 0.2, 
 		       testeando);
 
 
@@ -231,7 +233,7 @@ int main(int argc, char* argv[]){
 
 	   WeylSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
-		    qx, qy, -0.5, 0.5,-0.5, 0.5, 
+		    qx, qy, -0.2, 0.2,-0.2, 0.2, 
 		       testeando);
 
     }
@@ -249,7 +251,7 @@ int main(int argc, char* argv[]){
 
 	   WeylSection(CentroX, CentroY, GatosX, GatosY, 
 		    maximumgauss, cuentainterferencias,
-		    qx, qy, -0.5, 0.5,-0.5, 0.5, 
+		    qx, qy, -0.2, 0.2,-0.2, 0.2, 
 		       testeando);
 
    

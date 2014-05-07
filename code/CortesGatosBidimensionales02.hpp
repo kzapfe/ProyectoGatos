@@ -197,17 +197,21 @@ void WeylSection(CoherentState CenX[], CoherentState CenY[],
 
    empieza=clock();
     
-      for(int n=-resol; n<resol; n++){
-	for(int m=-resol; m<resol; m++){
+      for(int n=0; n<resol; n++){
+	for(int m=00; m<resol; m++){
 	  //partes chatas
 	  
 	  gsl_complex WeylFunctionCoherent;
 	  gsl_complex WeylFunctionInterference;
 	  gsl_complex WeylFunctionTotal;
 	 
-	  //El corte de Weyl tiene la escala AL REVEZ , aprox
-	  coordenadauno=(1./magnituddeinteres)*(double)n/(double)resol;     
-	  coordenadados=(1./magnituddeinteres)*(double)m/(double)resol;      
+	  //El corte de Weyl tiene la escala AL REVEZ , aprox LEGACYLINES
+	  //coordenadauno=(1./magnituddeinteres)*(double)n/(double)resol;     
+	  //coordenadados=(1./magnituddeinteres)*(double)m/(double)resol;      
+	  
+	  coordenadauno=minx+(maxx-minx)*(double)n/(double)resol;     
+	  coordenadados=miny+(maxy-miny)*(double)m/(double)resol;      
+
            
 	  if((!selectx)&&(!selecty))
 	    { //Corte en Q
@@ -256,7 +260,7 @@ void WeylSection(CoherentState CenX[], CoherentState CenY[],
 	    
 	  }
       
-        
+	  //Esto esta siendo usado suponiendo que en el valor dela funcion todo este bien normalizado
 	  WeylFunctionCoherent=gsl_complex_div_real(WeylFunctionCoherent,
 						    (double)maxgauss);
 	  WeylFunctionInterference=gsl_complex_div_real(WeylFunctionInterference,
