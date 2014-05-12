@@ -21,9 +21,9 @@ int main(){
   vector   <simplectic> x,y;
   //El numero de estados coherentes. El numero de gatos es 
   // la combinacion de pares posibles.
-  const int maximumgauss=70;
-  const double radiointeres=14;
-  int resol=600;
+  const int maximumgauss=7;
+  const double radiointeres=16;
+  int resol=300;
 
   mat centros;
   centros=Populate2BallShell(2000, maximumgauss);
@@ -47,8 +47,8 @@ int main(){
   
   };
 
-  ofstream Centros;
-  Centros.open("CentrosGaussianas.dat");
+  ofstream Centros, Cuerdas;
+  Centros.open("CentrosCirculo7.dat");
 
   Centros<<centros<<endl;
 
@@ -68,7 +68,7 @@ int main(){
 
   ofstream CorteEnX;
   
-  CorteEnX.open("WignerCorteX.dat");  
+  CorteEnX.open("WignerCirculo7X.dat");  
   
   double auxxq, auxxp;
 
@@ -94,13 +94,15 @@ int main(){
 
       WignerFunctionCoherent/=(double)maximumgauss;
 
-
+      //Luego las interferencias
 
       for(int i=0; i<cuentainterferencias; i++){
 	WignerFunctionInterference+=
 	  Gatos[i].InterferenceTermCentreRepresentation(falsax);
 
       }
+
+
       WignerFunctionInterference/=(double)cuentainterferencias;
   
       WignerTotal=WignerFunctionInterference+WignerFunctionCoherent;
@@ -118,7 +120,71 @@ int main(){
   
   CorteEnX.close();
   
+  ofstream CorteEnXhi;
+  
+  CorteEnXhi.open("WeylCirculo7Xhi.dat");  
 
+ 
+  for(int n=-resol; n<resol; n++){
+    for(int m=-resol; m<resol; m++){
+      //partes chatas
+      
+      
+      gsl_complex WeylFunctionCoherent;
+      gsl_complex WeylFunctionInterference;
+      gsl_complex WeylFunctionTotal;
+	 
+      auxxq=radiointeres*(double)n/(double)resol;
+      auxxp=radiointeres*(double)m/(double)resol;      
+      simplectic falsax(auxxq, auxxp);
+
+      //primero las puntas gaussianas
+      for(int i=0; i<maximumgauss; i++){
+	
+	WeylFunctionCoherent=
+	  gsl_complex_add(WeylFunctionCoherent,
+			  CentroX[i].ChordRepresentation(falsax));
+      	
+      }
+
+
+      for(int i=0; i<cuentainterferencias; i++){
+	//We may need sintactic Suger here
+	WeylFunctionInterference=
+	  gsl_complex_add(WeylFunctionInterference,
+			  Gatos[i].InterferenceTermChordRepresentation(falsax));	
+      }
+      
+      
+	  //Esto esta siendo usado suponiendo que en el valor dela funcion todo este bien normalizado
+      WeylFunctionCoherent=gsl_complex_div_real(WeylFunctionCoherent,
+						(double)maximumgauss);
+      WeylFunctionInterference=gsl_complex_div_real(WeylFunctionInterference,
+						    (double)cuentainterferencias);
+      WeylFunctionTotal=gsl_complex_add(WeylFunctionCoherent, 
+					    WeylFunctionInterference);
+      
+      CorteEnXhi<<falsax.q<<"\t"<<falsax.p<<"\t"		  
+		<<GSL_REAL(WeylFunctionCoherent)<<"\t"
+		<<GSL_IMAG(WeylFunctionCoherent)<<"\t"
+		<<GSL_REAL(WeylFunctionInterference)<<"\t"
+		<<GSL_IMAG(WeylFunctionInterference)<<"\t"
+		<<GSL_REAL(WeylFunctionTotal)<<"\t"
+		<<GSL_IMAG(WeylFunctionTotal)<<endl;
+      
+	   	  
+      
+    }
+    
+    CorteEnXhi<<endl;
+    
+  }
+  
+        
+      
+  
+  CorteEnXhi.close();
+ 
   
   return 0;
  

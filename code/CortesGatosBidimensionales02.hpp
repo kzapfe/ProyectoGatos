@@ -198,7 +198,7 @@ void WeylSection(CoherentState CenX[], CoherentState CenY[],
    empieza=clock();
     
       for(int n=0; n<resol; n++){
-	for(int m=00; m<resol; m++){
+	for(int m=0; m<resol; m++){
 	  //partes chatas
 	  
 	  gsl_complex WeylFunctionCoherent;
