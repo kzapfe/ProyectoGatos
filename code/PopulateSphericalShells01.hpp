@@ -17,8 +17,8 @@ rowvec CreateRandomPointinBall(int nivel=0, int dimension=2){
 
   /*Convencion es H=\sum_{dimension } 1/2(x^2+p^2)
    m=1, omega=1 */
-  double energia=hbar*((double)nivel+0.5*dimension);
-  double energiaaux=hbar*((double)(nivel+1)+0.5*dimension);
+  double energia=hbar*((double)nivel+0.25*dimension);
+  double energiaaux=hbar*((double)(nivel+1)+0.25*dimension);
   //Marsaglia algoritm
   rowvec x(dimension);
   double radio, angulo;

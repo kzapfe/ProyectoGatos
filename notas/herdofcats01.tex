@@ -3,7 +3,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
-\usepackage{subfigure}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{float}
 %\usepackage[spanish]{babel}
 \usepackage{bm}
 
@@ -238,7 +242,7 @@ the density matrix will look like:
 with certain relative phases $\phi_n$.
 
 The Wigner Function for the Herd of Cats would be
-\begin{equation}
+0\begin{equation}
 W_{herd}(\xfase)=\frac{1}{N}\sum_k W_k(\xfase)
 +\frac{2}{N(N-1)}\sum_{k\neq j}WI_{k,j}(\xfase),
 \end{equation}
@@ -258,7 +262,9 @@ Bessel Function \cite{BerryRIR}. This result shall also give us an idea of the
 time needed for obtaining the desired chord functions for more complex
 Hamiltonians. We have choosen relative large energy shells (E=) for the test,
 and various Herd \emph{sizes} ($N=$). The results are shown in the
-following figures (\ref{}, ), in them  we can observe certain encouraging 
+following figures (centre representation in \ref{wignercirculo70}, 
+chord representation in \ref{weylcirculo70}), 
+in them  we can observe certain encouraging 
 qualities. A most delightfull feature on the graphics below is that we can
 see something akin to an  Arago Spot \cite{Arago} 
 close to the midle of the circle, the only point
@@ -268,6 +274,109 @@ surrounding ring, but as cats acumulate, we begin to have negative values
 for the centre function very close to it, thus dulling part of its
 preponderance. 
 
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.33\textwidth}
+    \centering
+          \includegraphics[width=0.99\textwidth]{WignerCirculoSoloGauss70X.png}
+                \caption{The Gaussian Terms}
+                \label{centrosgauss70}
+  \end{subfigure}%
+\begin{subfigure}[b]{0.33\textwidth}
+    \centering
+          \includegraphics[width=0.99\textwidth]{WignerCirculoSoloInterferencias70X.png}
+                \caption{The Interference Terms}
+                \label{centrosinter70}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \centering
+          \includegraphics[width=0.99\textwidth]{WignerCirculo70X.png}
+                \caption{The Centre Function}
+                \label{centrostodo70}
+  \end{subfigure}%
+\caption{ The centre representation for the ``herd of cats'' over an harmonic
+oscilator. Notice the diference in scales between the Gaussian terms and
+the Interference Terms, which are aproximatelly 20 times smaller. Once
+that we take all into account, the interference terms become negligible, due to
+the allmost random phases canceling each other. Here we have used $N=70$, $\omega=1$,
+$\hbar=0.05$, and
+$E=(2000.5) \hbar \omega \approx 100$.
+ }\label{wignercirculo70}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.33\textwidth}
+    \centering
+          \includegraphics[width=0.99\textwidth]{WeylCirculo70XhiSoloGauss01.png}
+                \caption{The Gaussian Terms}
+                \label{cuerdasgauss70}
+  \end{subfigure}%
+\begin{subfigure}[b]{0.33\textwidth}
+    \centering
+          \includegraphics[width=0.99\textwidth]{WeylCirculo70XhiSoloInterferencias01.png}
+                \caption{The Interference Terms}
+                \label{cuerdasinter70}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \centering
+          \includegraphics[width=0.99\textwidth]{WeylCirculo70Xhi01.png}
+                \caption{The Centre Function}
+                \label{cuerdasstodo70}
+  \end{subfigure}%
+\caption{ The chord representation for the ``herd of cats'' over an harmonic
+oscilator. Againg, notice how much smaller the interference terms are.
+that we take all into account, the interference terms become negligible.
+The parameters are the same as above. Due to the simmetry of the
+energy surface, only the real part is shown.
+ }\label{weylcirculo70}
+\end{figure}
+
+In order to test our result, we test it against the result predicted
+by Berry in \ref{BerryRIR}, which says that it must essentialy have
+nodal manifolds at the zeros of a  Bessel Function with the adecuately
+scaled argument. In the figuer \ref{BesselZeros01} I present this
+comparition. There I have also used two other values for $N$, namely,
+with $N=7$, and $N=140$. We can see that it is not so notoriously better,
+but the computing time grows terribly fast (the number of interference
+terms goes as $N^2/2$ and complex numbers make everything twice as slow).
+The second nodal manifold gives worse results if $N$ is too small. 
+And there is also another terrible point of comparition: in our first
+tests, with the pointillist centre function, we could obtain much better
+results (up to  the 5th or 7th nodal line) just by augmenting the number
+of centres, and still be feasible on reasonable computer times
+(Compare this figures with figures 3, 4 and 8 of the document ``FifthTryNotes.pdf''). 
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.33\textwidth}
+    \centering
+          \includegraphics[width=0.99\textwidth]{WeylCirculo7Xhi-ZerosReal-Bessel.png}
+                \caption{$N=7$}
+                \label{besselzero7}
+  \end{subfigure}%
+\begin{subfigure}[b]{0.33\textwidth}
+    \centering
+          \includegraphics[width=0.99\textwidth]{WeylCirculo70Xhi-ZerosReal-Bessel.png}
+                \caption{The Interference Terms}
+                \label{$N=70$}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \centering
+          \includegraphics[width=0.99\textwidth]{WeylCirculo140Xhi-ZerosReal-Bessel.png}
+                \caption{The Centre Function}
+                \label{$N=140$}
+  \end{subfigure}%
+\caption{ The chord representation for the ``herd of cats'' over an harmonic
+oscilator, with different values for $N$. The Nodal lines for the
+Bessel Function are drawn in green, while the ones corresponding to our
+results are in black. Whe can see how the improvement gained by augmenting the number
+of coherent states is more apparent at the second nodal line. 
+ }\label{BesselZeros01}
+\end{figure}
 
 \section{A Herd of Cats over Nelson}
 

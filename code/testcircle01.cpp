@@ -21,7 +21,7 @@ int main(){
   vector   <simplectic> x,y;
   //El numero de estados coherentes. El numero de gatos es 
   // la combinacion de pares posibles.
-  const int maximumgauss=7;
+  const int maximumgauss=140;
   const double radiointeres=16;
   int resol=300;
 
@@ -36,7 +36,7 @@ int main(){
   //iniocializar el estado poblado
   //parece ser que vector no funciona aqui bien
   CoherentState *CentroX ;
-  CatState * Gatos;
+  CatState *Gatos;
 
   CentroX=new CoherentState[maximumgauss]; 
   Gatos=new CatState[maximumgauss*(maximumgauss-1)/2];
@@ -48,7 +48,7 @@ int main(){
   };
 
   ofstream Centros, Cuerdas;
-  Centros.open("CentrosCirculo7.dat");
+  Centros.open("CentrosCirculo140.dat");
 
   Centros<<centros<<endl;
 
@@ -63,14 +63,17 @@ int main(){
 
   }
 
+  double auxxq, auxxp;
+
   //ahora toca calcular el valor de las chivas en la funcion:
   //Corte en el plano de las q y en el de las y.
 
+  
   ofstream CorteEnX;
   
-  CorteEnX.open("WignerCirculo7X.dat");  
+  CorteEnX.open("WignerCirculo140X.dat");  
   
-  double auxxq, auxxp;
+ 
 
 
   for(int n=-resol; n<resol; n++){
@@ -118,11 +121,11 @@ int main(){
     
   }
   
-  CorteEnX.close();
+  CorteEnX.close(); 
   
   ofstream CorteEnXhi;
   
-  CorteEnXhi.open("WeylCirculo7Xhi.dat");  
+  CorteEnXhi.open("WeylCirculo140Xhi.dat");  
 
  
   for(int n=-resol; n<resol; n++){
@@ -133,9 +136,10 @@ int main(){
       gsl_complex WeylFunctionCoherent;
       gsl_complex WeylFunctionInterference;
       gsl_complex WeylFunctionTotal;
-	 
-      auxxq=radiointeres*(double)n/(double)resol;
-      auxxp=radiointeres*(double)m/(double)resol;      
+      const double SegundoZeroBessel=5.7; //en realidad un poco que el segundo Bessel.
+
+      auxxq=((SegundoZeroBessel*hbar)/radiointeres)*(double)n/(double)resol;
+      auxxp=(SegundoZeroBessel*hbar/radiointeres)*(double)m/(double)resol;      
       simplectic falsax(auxxq, auxxp);
 
       //primero las puntas gaussianas
